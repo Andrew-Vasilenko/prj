@@ -5,8 +5,8 @@ import ngrok from 'ngrok';
 const app = express();
 
 const PORT = 80;
-const url = await ngrok.connect({"authtoken": "2AoT6Rx65ejpwKSSkHUkL_47tJqijjv52XnRXKyf9mZ"});
-// const url = `http://localhost:${PORT}`;
+//const url = await ngrok.connect({"authtoken": "2AoT6Rx65ejpwKSSkHUkL_47tJqijjv52XnRXKyf9mZ"});
+const url = `http://localhost:${PORT}`;
 
 app.get("/play*", (req, res) => {
   let lang = req.headers["accept-language"]?.slice(0,2) || "en";
