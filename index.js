@@ -5,7 +5,6 @@ import ngrok from 'ngrok';
 const app = express();
 
 const PORT = 80;
-//const url = await ngrok.connect({"authtoken": "2AoT6Rx65ejpwKSSkHUkL_47tJqijjv52XnRXKyf9mZ"});
 const url = `http://gid100.kubsau.ru`;
 
 app.get("/play*", (req, res) => {
