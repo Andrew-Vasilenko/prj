@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TRR</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css"/>
+        <style>
+            .audio {
+                display: block;
+                margin: auto;
+                width: 90%;
+                padding: 10px;
+            }
+
+            audio::-webkit-media-controls-play-button {
+                background-color: red;
+                display: none;
+            }
+
+            .button-41 {
+                background-color: initial;
+                background-image: linear-gradient(-180deg, #edefee, #00BD68);
+                border-radius: 5px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+                color: #FFFFFF;
+                cursor: pointer;
+                display: inline-block;
+                height: 20vh;
+                text-align: center;
+                margin-left: 5%;
+                width: 90%;
+                z-index: 9;
+                border: 0;
+                margin-bottom: 2%;
+                font-size: 40px;
+            }
+
+            .button-41:hover {
+                background: #00bd68;
+            }
+
+            .button-white {
+                background-image: linear-gradient(-180deg, white, white);
+                margin-left: 1%;
+                width: fit-content;
+                border: 0;
+                cursor: pointer;
+            }
+
+            .button-white:hover {
+                background: rgb(247, 245, 245);
+            }
+
+            .flex_container {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 2vh;
+            }
+
+            .fi {
+                width: 1.5em;
+            }
+
+            .flag {
+                background-size: 100%;
+                display: block;
+                width: 10vw;
+                height: 8vw;
+            }
+        </style>  
+    </head>
+    <body>
+        <div style="display: flex;
+        justify-content: space-around; flex-direction: column; ">
+        <div style="display: grid;">
+            <img style="max-width: 90%;max-height: 90vh;margin: auto;" src="{{ imgSrc }}" alt="picture" >
+            <audio id="audio" class="audio" src="{{ recSrc }}" type="audio/ogg" controls autoplay loop>
+                Your browser does not support the audio element.
+            </audio>
+            <button id="playButton" class="button-41" onclick="Play()">
+                <img style="height: 20vh;" src="https://lib.kubsau.ru/_include/img/logo-eportal.png" alt="kubsau" >
+            </button>
+        </div>
+
+        <div class="flex_container" style="margin-top: 10vh;">
+            <button class="button-white" onclick="changeLang('es')"><span class="flag fi fi-es"></span></button>
+            <button class="button-white" onclick="changeLang('it')"><span class="flag fi fi-it"></span></button>
+            <button class="button-white" onclick="changeLang('pt')"><span class="flag fi fi-pt"></span></button>
+            <button class="button-white" onclick="changeLang('cn')"><span class="flag fi fi-cn"></span></button>
+        </div>
+        
+        <div class="flex_container">
+            <button class="button-white" onclick="changeLang('ru')"><span class="flag fi fi-ru"></span></button>
+            <button class="button-white" onclick="changeLang('en')"><span class="flag fi fi-gb"></span></button>
+            <button class="button-white" onclick="changeLang('fr')"><span class="flag fi fi-fr"></span></button>
+            <button class="button-white" onclick="changeLang('ar')"><span class="flag fi fi-ae"></span></button>
+            <button class="button-white" onclick="changeLang('de')"><span class="flag fi fi-de"></span></button>
+        </div>
+        </div>
+        
+        <script>
+            const audio = document.getElementById("audio");
+            const playButton = document.getElementById("playButton");
+            const pictureName = "{{ pictureName }}";
+            function Play() {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.innerHTML = "&#10074;&#10074;"; //&#x23E9;
+                    audio.muted = false;
+                }
+                else {
+                    audio.pause();
+                    playButton.innerHTML = '<img style="height: 20vh;" src="https://lib.kubsau.ru/_include/img/logo-eportal.png" alt="kubsau" >';
+                }
+            }
+            function changeLang(lang) {
+                const timeline = audio.currentTime;
+                const newLink = "{{ url }}" + `/getRecord?pictureName=${pictureName}&lang=${lang}#t=${timeline}`;
+                audio.src = newLink;
+                Play();
+            }
+        </script>
+    </body>
+</html>

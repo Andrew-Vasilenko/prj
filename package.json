@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "express": "^4.21.1",
+    "flag-icons": "^7.2.3",
+    "ngrok": "^5.0.0-beta.2"
+  }
+}
