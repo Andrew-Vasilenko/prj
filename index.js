@@ -5,7 +5,7 @@ import ngrok from 'ngrok';
 const app = express();
 
 const PORT = 80;
-const url = `http://gid100.kubsau.ru`;
+const url = `https://gid100.kubsau.ru`;
 
 app.get("/play*", (req, res) => {
   let lang = req.headers["accept-language"]?.slice(0,2) || "en";
